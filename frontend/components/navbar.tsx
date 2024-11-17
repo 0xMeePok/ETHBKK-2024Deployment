@@ -92,6 +92,11 @@ export function Navbar() {
     setIsVerified(true)
   }
 
+  const debugVerify = () => {
+    setIsVerified(true)
+    console.log('🔧 Debug: Verification bypassed and set to true')
+  }
+
   const onSuccess = (result: ISuccessResult) => {
     console.log('Verification successful:', result)
     setIsVerified(true)
