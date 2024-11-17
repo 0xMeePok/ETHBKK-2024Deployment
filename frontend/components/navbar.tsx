@@ -36,9 +36,12 @@ export function Navbar() {
   useEffect(() => {
     // Make debugVerify accessible globally
     if (typeof window !== 'undefined') {
-      (window as any).debugVerify = debugVerify
+      (window as any).debugVerify = () => {
+        setIsVerified(true)
+        console.log('🔧 Debug: Verification bypassed and set to true')
+      }
     }
-  }, [])
+  }, [setIsVerified])
 
   const checkConnection = async () => {
     if (typeof window.ethereum !== 'undefined') {
@@ -99,10 +102,6 @@ export function Navbar() {
     setIsVerified(true)
   }
 
-  const debugVerify = () => {
-    setIsVerified(true)
-    console.log('🔧 Debug: Verification bypassed and set to true')
-  }
 
   const onSuccess = (result: ISuccessResult) => {
     console.log('Verification successful:', result)
