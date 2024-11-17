@@ -32,6 +32,13 @@ export function Navbar() {
       window.ethereum?.removeListener('chainChanged', checkConnection)
     }
   }, [])
+  
+  useEffect(() => {
+    // Make debugVerify accessible globally
+    if (typeof window !== 'undefined') {
+      (window as any).debugVerify = debugVerify
+    }
+  }, [])
 
   const checkConnection = async () => {
     if (typeof window.ethereum !== 'undefined') {
